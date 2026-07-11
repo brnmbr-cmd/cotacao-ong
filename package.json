@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "App de cotação de preços automatizado para ONGs - WAB",
   "main": "netlify/functions/scrape-prices.js",
-  "dependencies": {
-    "cheerio": "^1.0.0-rc.12"
-  },
   "engines": {
     "node": ">=18.0.0"
   }
