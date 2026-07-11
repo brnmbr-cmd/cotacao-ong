@@ -505,16 +505,15 @@ async function fetchQuotes(params) {
  */
 function normalizeQuotes(quotes) {
   return quotes.map((q) => ({
-    store: q.store || q.loja || q.fornecedor || "Fornecedor",
-    productName: q.productName || q.product || q.nome || "",
-    productUrl: q.productUrl || q.url || q.link || "",
+    store: q.store || q.loja || q.fornecedor || q.retailer || "Fornecedor",
+    productName: q.productName || q.product || q.nome || q.title || "",
+    productUrl: q.productUrl || q.url || q.link || q.product_url || "",
     price: Number(q.price || q.preco || q.valor || 0),
-    shipping: Number(q.shipping || q.frete || 0),
-    deliveryDays: q.deliveryDays || q.prazo || q.prazoEntrega || null,
+    shipping: Number(q.shipping || q.frete || q.shippingCost || 0),
+    deliveryDays: q.deliveryDays || q.prazo || q.prazoEntrega || (q.shippingInfo ? q.shippingInfo.estimatedDelivery : null) || null,
     total: 0
   }));
 }
-
 /**
  * Ordena cotações pelo custo total (preço + frete)
  * @param {Array} quotes
